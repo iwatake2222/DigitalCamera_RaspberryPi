@@ -1,0 +1,38 @@
+## environment
+#PLATFORM = WIN_MINGW
+PLATFORM = LINUX
+BINARY = DEBUG
+#BINARY = RELEASE
+
+
+ifeq ($(PLATFORM), WIN_MINGW)
+# for win
+MAKE = mingw32-make
+#DEL = del
+DEL = rm -f
+CC = g++
+AR = ar
+else
+# for linux
+MAKE = make
+DEL = rm -f
+CC = g++
+AR = ar
+endif
+
+ifeq ($(BINARY), DEBUG)
+CFLAGS = -g3 -O0 -Wall
+else
+CFLAGS = -O3 -Wall
+endif
+
+LDFLAGS =
+LIBS = -lm -lpthread -ljpeg
+
+OBJS = $(SRCS:.cpp=.o)
+#OBJS = *.o
+
+.c.o:
+	$(CC) $(CFLAGS) $(INCLUDES) -c $<
+.cpp.o:
+	$(CC) $(CFLAGS) $(INCLUDES) -c $<
