@@ -5,7 +5,7 @@ rm log_shell.txt
 rm log_exe.txt
 rm log_run.txt
 chmod +x `pwd`/autorun.sh
-echo "@reboot " `pwd`/autorun.sh " > log_shell.txt 2>&1 &" | crontab
+echo "@reboot sh" `pwd`/autorun.sh " > log_shell.txt 2>&1 &" | crontab
 sudo /etc/init.d/cron start
 
 

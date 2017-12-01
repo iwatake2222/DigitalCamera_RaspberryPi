@@ -1,7 +1,8 @@
 # Digital Camera with Raspberry Pi in Linux Standard Way
 This is a Raspberry Pi Project to create a digital camere in Linux standard way.  
-Device files and related system calls (open/write/ioctl/select) are used to access devices instead of using external libraries. To access a camera from C++ userland, I used  Video 4 Linux Two (V4L2) API.
+Device files and related system calls (open/write/ioctl/select) are used to access devices instead of using external libraries or OpenCV. To access a camera from C++ userland, I use  Video 4 Linux Two (V4L2) API.
 
+[Link to Youtube Video](https://youtu.be/xP2iDa2bzRc)  
 <img src = "01_doc/pic_all.jpg" width=80%>
 
 <table><tr>
@@ -19,7 +20,7 @@ Device files and related system calls (open/write/ioctl/select) are used to acce
 - Raspberry Pi Zero W
 	- can be work on Pi2/3
 	- OS: 2017-09-07-raspbian-stretch-lite
-- 2.8 inch LCD Module
+- 2.8 inch Display (LCD) Module
 	- 320 x 240
 	- ILI9341 SPI interface
 - Touch Panel (TP)
@@ -30,6 +31,7 @@ Device files and related system calls (open/write/ioctl/select) are used to acce
 
 ## Overview
 <img src = "01_doc/overview.jpg">
+
 Note: LCD(spidev0.0) and TP(spidev0.1) share SCK/MISO/MOSI.
 
 ### Software Modules
@@ -56,6 +58,8 @@ Note: LCD(spidev0.0) and TP(spidev0.1) share SCK/MISO/MOSI.
 	- LCD_MISO: SPI0_MISO
 	- LCD_CS: SPI0_CE0_N 
 	- DC: GPIO 26 (/sys/class/gpio/gpio26)
+	- VDD, LED, RESET: 3.3V
+	- GND: GND
 - TP (SPI0.1 (/dev/spidev0.1))
 	- TP_SCLK: SPI0_SCLK
 	- TP_MOSI: SPI0_MOSI
@@ -84,3 +88,8 @@ Note: LCD(spidev0.0) and TP(spidev0.1) share SCK/MISO/MOSI.
 - Mode change: Tap any corner or edge
 - Playback next picture: Tap around the center during playback mode
 
+## Note for debug
+```
+sudo modprobe bcm2835-v4l2
+v4l2-ctl -d /dev/video0 --list-formats-ext
+```
