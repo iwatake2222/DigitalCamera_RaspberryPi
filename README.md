@@ -24,7 +24,7 @@ Device files and related system calls (open/write/ioctl/select) are used to acce
 	- 320 x 240
 	- ILI9341 SPI interface
 - Touch Panel (TP)
-	- TSC2046 SPI interface (ADS8746 compatible)
+	- TSC2046 SPI interface (ADS7846 compatible)
 - Camera
 	- Raspberry Pi Camera V2
 
@@ -77,7 +77,7 @@ Note: LCD(spidev0.0) and TP(spidev0.1) share SCK/MISO/MOSI.
 	- `sudo modprobe bcm2835-v4l2`
 	- `./a.out`
 - If you want the application to start automatically
-	- run `sh ./install.sh` to install, which does:
+	- `sh ./install.sh` to install, which does:
 		- build the project
 		- install libjpeg
 		- setup cron for auto start

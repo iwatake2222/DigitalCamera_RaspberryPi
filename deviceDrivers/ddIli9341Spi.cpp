@@ -112,14 +112,10 @@ void DdIli9341Spi::writeCommand(uint8_t cmd)
 {
 	write(m_fdGpioDc, "0", 1);
 
-	uint8_t rx[1];
 	struct spi_ioc_transfer tr = {0};
 	tr.tx_buf = (uint64_t)&cmd;
-	tr.rx_buf = (uint64_t)rx;
+	tr.rx_buf = 0;
 	tr.len = 1;
-	tr.speed_hz = m_spiSpeed;
-	tr.delay_usecs = 0;
-	tr.bits_per_word = m_bitsPerWord;
 	ioctl(m_fdSpi, SPI_IOC_MESSAGE(1), &tr);
 }
 
@@ -127,14 +123,10 @@ void DdIli9341Spi::writeData(uint8_t data)
 {
 	write(m_fdGpioDc, "1", 1);
 
-	uint8_t rx[1];
 	struct spi_ioc_transfer tr = {0};
 	tr.tx_buf = (uint64_t)&data;
-	tr.rx_buf = (uint64_t)rx;
+	tr.rx_buf = 0;
 	tr.len = 1;
-	tr.speed_hz = m_spiSpeed;
-	tr.delay_usecs = 0;
-	tr.bits_per_word = m_bitsPerWord;
 	ioctl(m_fdSpi, SPI_IOC_MESSAGE(1), &tr);
 }
 
@@ -142,14 +134,10 @@ void DdIli9341Spi::writeData(uint8_t data[], uint32_t size)
 {
 	write(m_fdGpioDc, "1", 1);
 
-	// uint8_t rx[size];
 	struct spi_ioc_transfer tr = {0};
 	tr.tx_buf = (uint64_t)data;
 	tr.rx_buf = 0;
 	tr.len = size;
-	tr.speed_hz = m_spiSpeed;
-	tr.delay_usecs = 0;
-	tr.bits_per_word = m_bitsPerWord;
 	ioctl(m_fdSpi, SPI_IOC_MESSAGE(1), &tr);
 }
 

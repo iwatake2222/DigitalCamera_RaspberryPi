@@ -71,6 +71,7 @@ RET DdCamera::init(uint32_t width, uint32_t height, CAPTURE_FORMAT pixelFormat)
 
 	/* request buffers (device allocates buffers?) */
 	struct v4l2_requestbuffers req;
+	memset(&req, 0, sizeof(req));
 	req.count = BUFFER_NUM;
 	req.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
 	req.memory = V4L2_MEMORY_MMAP;
