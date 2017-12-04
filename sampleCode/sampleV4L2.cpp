@@ -22,7 +22,7 @@ int main()
 	copyBuffer(buff, &size);
 	stopCapture();
 	saveFileBinary("aaa.jpg", buff, size);
-	delete buff;
+	delete[] buff;
 	return 0;
 }
 

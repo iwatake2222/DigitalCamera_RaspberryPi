@@ -39,8 +39,8 @@ RET CameraCtrl::liveviewStop()
 	if(!m_ddCamera) return RET_ERR;
 	m_ddCamera->captureStop();
 	delete m_ddCamera;
-	delete m_bufferRGB565;
-	delete m_bufferRGB888;
+	delete[] m_bufferRGB565;
+	delete[] m_bufferRGB888;
 	m_ddCamera = NULL;
 	return RET_OK;
 }
@@ -77,7 +77,7 @@ RET CameraCtrl::captureJpeg(const char* filename)
 
 	m_ddCamera->captureStop();
 	delete m_ddCamera;
-	delete bufferJpeg;
+	delete[] bufferJpeg;
 	m_ddCamera = NULL;
 
 	liveviewStart();	// restart liveview

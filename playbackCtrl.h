@@ -16,8 +16,8 @@ private:
 	static void libjpeg_output_message(j_common_ptr cinfo);
 
 private:
-	RET decodeJpeg(FILE *p_file, uint32_t maxWidth, uint32_t maxHeight, uint8_t *bufferRGB565);
-	RET calcJpegOutputSize(struct jpeg_decompress_struct* p_cinfo, uint32_t maxWidth, uint32_t maxHeight);
+	RET decodeJpeg(FILE *file, uint32_t maxWidth, uint32_t maxHeight, uint8_t *bufferRGB565);
+	RET calcJpegOutputSize(struct jpeg_decompress_struct* cinfo, uint32_t maxWidth, uint32_t maxHeight);
 
 public:
 	PlaybackCtrl(uint32_t width, uint32_t height);
